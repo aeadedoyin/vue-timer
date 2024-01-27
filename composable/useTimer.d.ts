@@ -21,7 +21,7 @@ declare enum statuses {
     'ENDED' = "Ended"
 }
 export declare const useTimer: (options: TimerOptions, callback?: ((...args: unknown[]) => any) | null | undefined) => {
-    timerId: number;
+    timerId: any;
     live: {
         toString: () => string;
         toDateString: () => string;
