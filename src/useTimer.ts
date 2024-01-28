@@ -1,4 +1,4 @@
-import { computed, onUnmounted, reactive, ref } from "vue";
+import { type Ref, computed, onUnmounted, reactive, ref } from "vue";
 
 /** — Time units for TTL option*/
 type TimeUnit = "ms" | "s" | "m" | "h" | '';
@@ -38,20 +38,19 @@ export const useTimer = (options: TimerOptions, callback?: ((...args: unknown[])
   const interval = ref(options.interval || 1)
   const isImmediate = ref(options.immediate)
   const startTime = ref(Date.now())
-  const due = ref(new Date())
-  const timerId = ref<any>(0)
+  const due = ref(new Date()) as Ref<Date> // preferred to ref<Date>(...) to reduce .d.ts file size 
+  const timerId = ref<NodeJS.Timeout>() 
   const hasExpired = ref(false)
   const used = ref(0)
   const left = computed(() => {
     const value = duration.value - used.value
     return value <= 0 ? 0 : value
   })
-  const live = ref(new Date(Date.now()))
+  const live = ref(new Date(Date.now())) as Ref<Date> // preferred to ref<Date>(...) to reduce .d.ts file size 
   const status = ref(statuses.PENDING)
   const isRunning = ref(false)
-  
   const logger = {
-    warn(...args: any[])  {
+    warn(...args: any[]) {
       if (options.log) {
         console.warn(...args)
       }
@@ -119,7 +118,7 @@ export const useTimer = (options: TimerOptions, callback?: ((...args: unknown[])
         throw new Error(`Invalid time unit: '${timeUnit}'`);
       }
     }
-    if (newTtl instanceof Date) { 
+    if (newTtl instanceof Date) {
       duration.value = newTtl.getTime() - Date.now()
     }
     if (duration.value < 0 && newTtl instanceof Date) {
