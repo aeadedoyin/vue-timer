@@ -5,7 +5,7 @@ Yet another intuitive Vue Timer
 ## Installation
 
 ```bash
-pnpm install @later/vue-timer
+pnpm install @laterhq/vue-timer
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ Create a Vue 3 component file, e.g., `components/SampleComponent.vue`.
 </template>
 
 <script setup>
-import { useTimer } from '@later/vue-timer';
+import { useTimer } from '@laterhq/vue-timer';
 
 const timer = useTimer({
   log: true,
@@ -55,7 +55,7 @@ Create a Nuxt 3 page file, e.g., `pages/page.vue`.
 </template>
 
 <script setup>
-import { useTimer } from '@later/vue-timer';
+import { useTimer } from '@laterhq/vue-timer';
 
 const timer = useTimer({
   log: true,
@@ -71,7 +71,7 @@ const timer = useTimer({
 Create a Vue 3 plugin file, e.g., `timerPlugin.js (.ts)`.
 
 ```javascript
-import { useTimer } from '@later/vue-timer';
+import { useTimer } from '@laterhq/vue-timer';
 
 const timerPlugin = {
   install(app) {
