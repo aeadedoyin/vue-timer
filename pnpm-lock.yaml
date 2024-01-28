@@ -19,12 +19,6 @@ devDependencies:
   gh-pages:
     specifier: ^6.1.1
     version: 6.1.1
-  process:
-    specifier: ^0.11.10
-    version: 0.11.10
-  typescript:
-    specifier: ^5.3.3
-    version: 5.3.3
   vite:
     specifier: ^5.0.8
     version: 5.0.12(@types/node@20.11.8)
@@ -842,11 +836,6 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
-
-  /process@0.11.10:
-    resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
-    engines: {node: '>= 0.6.0'}
-    dev: true
 
   /rollup@4.9.6:
     resolution: {integrity: sha512-05lzkCS2uASX0CiLFybYfVkwNbKZG5NFQ6Go0VWyogFTXXbR039UVsegViTntkk4OglHBdF54ccApXRRuXRbsg==}
