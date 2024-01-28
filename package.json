@@ -1,7 +1,7 @@
 {
   "name": "@laterhq/vue-timer",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "homepage": "https://aeadedoyin.github.io/vue-timer",
   "main": "./dist/later-vue-timer.umd.cjs",
