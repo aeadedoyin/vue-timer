@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTimer } from "./composable/useTimer";
+import { useTimer } from "../useTimer";
 
 const generateRandomDate = () => {
   const now = new Date().getTime();
@@ -61,4 +61,4 @@ const timer3 = useTimer({ immediate: true, log: true })
     </div>
   </div>
 
-</template>
+</template>../useTimer

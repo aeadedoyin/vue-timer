@@ -1,3 +1,3 @@
-import { useTimer } from './composable/useTimer';
+import { useTimer } from './useTimer';
 
 export { useTimer }
