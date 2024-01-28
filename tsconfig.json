@@ -6,13 +6,15 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Bundler */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "preserve",
+    "outDir": "dist",
+    "declaration": true,
 
     /* Linting */
     "strict": true,
@@ -20,6 +22,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
+  
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["src/App.vue", "src/main.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

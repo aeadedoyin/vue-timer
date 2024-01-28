@@ -5,14 +5,14 @@ export default defineConfig({
   plugins: [vue()],
   base: "/vue-timer/",
   build: {
+    outDir: 'demo',
     lib: {
-      entry: ["./src/index.ts"],
+      entry: ["./index.html"],
       name: "laterVueTimer",
       fileName: "later-vue-timer",
-      formats: ['cjs', 'umd', 'iife', 'es'],
+      formats: ['es'],
     },
     rollupOptions: {
-      external: ["vue"],
       output: {
         globals: {
           vue: "Vue",
