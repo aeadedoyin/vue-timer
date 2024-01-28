@@ -9,7 +9,7 @@ export default defineConfig({
       entry: ["./src/index.ts"],
       name: "laterVueTimer",
       fileName: "later-vue-timer",
-      formats: ['cjs', 'umd', 'iife', 'es'],
+      formats: ['cjs', 'es'],
     },
     rollupOptions: {
       external: ["vue"],
