@@ -1,3 +1,1 @@
-import { useTimer } from './useTimer';
-
-export { useTimer }
+export * from './useTimer';
