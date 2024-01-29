@@ -16,7 +16,7 @@ type TimerOptions = {
 
 type Timer = {
     /** Timer id based on setInterval API. Cancel/Clear timer with clearInterval(timerId) anywhere */
-    timerId: NodeJS.Timeout | undefined;
+    timerId: number | undefined;
     /** — Current system DateTime */
     live: Date;
     /** — DateTime instance when the timer ends */
@@ -72,7 +72,7 @@ export const useTimer = (options: TimerOptions, callback?: ((...args: unknown[])
   const isImmediate = ref(options.immediate)
   const startTime = ref(Date.now())
   const due = ref(new Date()) as Ref<Date> // preferred to ref<Date>(...) to reduce .d.ts file size 
-  const timerId = ref<NodeJS.Timeout>() 
+  const timerId = ref(0)
   const hasExpired = ref(false)
   const used = ref(0)
   const left = computed(() => {
@@ -148,14 +148,14 @@ export const useTimer = (options: TimerOptions, callback?: ((...args: unknown[])
       if (timeUnit in timeUnitMap) {
         duration.value = numVal * timeUnitMap[timeUnit];
       } else {
-        throw new Error(`Invalid time unit: '${timeUnit}'`);
+        throw new Error(`TTL - ('${timeUnit}') invalid time unit`);
       }
     }
     if (newTtl instanceof Date) {
       duration.value = newTtl.getTime() - Date.now()
     }
     if (duration.value < 0 && newTtl instanceof Date) {
-      logger.warn(`TTL: (${newTtl.toLocaleString()}) cannot be in the past`);
+      logger.warn(`TTL - (${newTtl.toLocaleString()}) cannot be in the past`);
       return false
     }
 
