@@ -14,6 +14,39 @@ type TimerOptions = {
   ttl?: `${number}${TimeUnit}` | Date
 }
 
+type Timer = {
+    /** Timer id based on setInterval API. Cancel/Clear timer with clearInterval(timerId) anywhere */
+    timerId: NodeJS.Timeout | undefined;
+    /** — Current system DateTime */
+    live: Date;
+    /** — DateTime instance when the timer ends */
+    due: Date;
+    /** — The current status of the timer. */
+    status: statuses;
+    /** — The total ttl in milliseconds */
+    duration: number;
+    /** — The time elapsed since the timer started/resumed. */
+    used: number;
+    /** — The time remaining until the timer expires. */
+    left: number;
+    /** — Indicates whether the timer is running */
+    isRunning: boolean;
+    /** — Indicates whether the timer has expired. */
+    hasExpired: boolean;
+    /** — Pauses the timer.(but won't execute `callback`)*/
+    pause: () => void;
+    /** — Resumes the timer.(even if it is `paused`, `pending`, `stopped`)*/
+    resume: () => false | undefined;
+    /** — Starts the timer.(if ttl is in future)*/
+    start: () => void;
+    /** — Restarts the timer.(after resetting `used` to zero)*/
+    restart: () => void;
+    /** — Stop the timer.(and execute `callback` even if time hasn't ended)*/
+    stop: () => void;
+      /** — Update the timer ttl (duration) and starts immediately if `immediate` is true*/
+    setTtl: (newTtl?: `${number}${TimeUnit}` | Date, newImmediate?: boolean | null) => false | undefined;
+}
+
 /** — Statuses used for status property*/
 enum statuses {
   'PENDING' = 'Pending',
@@ -33,7 +66,7 @@ const timeUnitMap = {
   '': 1
 };
 
-export const useTimer = (options: TimerOptions, callback?: ((...args: unknown[]) => any) | null) => {
+export const useTimer = (options: TimerOptions, callback?: ((...args: unknown[]) => any) | null) : Timer => {
   const duration = ref(60000);
   const interval = ref(options.interval || 1)
   const isImmediate = ref(options.immediate)
@@ -106,7 +139,7 @@ export const useTimer = (options: TimerOptions, callback?: ((...args: unknown[])
     status.value = statuses.STARTED
   }
 
-  /** — Sets the timer duration in millisecond and starts if immediate is true*/
+  /** — Update the timer ttl (duration) and starts immediately if `immediate` is true*/
   const setTtl = (newTtl?: `${number}${TimeUnit}` | Date, newImmediate: boolean | null = null) => {
     isImmediate.value = newImmediate || isImmediate.value
     if (typeof newTtl === 'string') {
